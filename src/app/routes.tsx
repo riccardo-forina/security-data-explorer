@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch, Redirect } from 'react-router-dom';
 import { Alert, PageSection } from '@patternfly/react-core';
 import { DynamicImport } from '@app/DynamicImport';
 import { accessibleRouteChangeHandler } from '@app/utils/utils';
-import { Dashboard } from '@app/Dashboard/Dashboard';
 import { NotFound } from '@app/NotFound/NotFound';
 import DocumentTitle from 'react-document-title';
 import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
-let routeFocusTimer: number;
-const getSupportModuleAsync = () => {
-  return () => import(/* webpackChunkName: 'support' */ '@app/Support/Support');
+
+const getCVRFListAsync = () => {
+  return () => import(/* webpackChunkName: 'CVRFList' */ '@app/pages/CVRFList');
 };
 
-const Support = (routeProps: RouteComponentProps) => {
+const AsyncCVRFList = (routeProps: RouteComponentProps) => {
   const lastNavigation = useLastLocation();
   return (
-    <DynamicImport load={getSupportModuleAsync()} focusContentAfterMount={lastNavigation !== null}>
+    <DynamicImport load={getCVRFListAsync()} focusContentAfterMount={lastNavigation !== null}>
       {(Component: any) => {
         let loadedComponent: any;
         if (Component === null) {
@@ -27,7 +26,7 @@ const Support = (routeProps: RouteComponentProps) => {
             </PageSection>
           );
         } else {
-          loadedComponent = <Component.Support {...routeProps} />;
+          loadedComponent = <Component.CVRFList {...routeProps} />;
         }
         return loadedComponent;
       }}
@@ -47,11 +46,14 @@ const RouteWithTitleUpdates = ({ component: Component, isAsync = false, title, .
   }
 
   React.useEffect(() => {
+    let routeFocusTimer;
     if (!isAsync && lastNavigation !== null) {
       routeFocusTimer = accessibleRouteChangeHandler();
     }
     return () => {
-      clearTimeout(routeFocusTimer);
+      if (routeFocusTimer) {
+        clearTimeout(routeFocusTimer);
+      }
     };
   }, []);
 
@@ -70,27 +72,19 @@ export interface IAppRoute {
 
 const routes: IAppRoute[] = [
   {
-    component: Dashboard,
+    component: AsyncCVRFList,
     exact: true,
     icon: null,
-    label: 'Dashboard',
-    path: '/',
-    title: 'Main Dashboard Title'
-  },
-  {
-    component: Support,
-    exact: true,
-    icon: null,
-    isAsync: true,
-    label: 'Support',
-    path: '/support',
-    title: 'Support Page Title'
+    label: 'CVRF',
+    path: '/cvrf',
+    title: 'CVRF'
   }
 ];
 
 const AppRoutes = () => (
   <LastLocationProvider>
     <Switch>
+      <Redirect from='/' to='/cvrf' exact={true} />
       {routes.map(({ path, exact, component, title, isAsync, icon }, idx) => (
         <RouteWithTitleUpdates
           path={path}
