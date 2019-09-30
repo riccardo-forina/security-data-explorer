@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation } from 'react-router';
 import { Route, RouteComponentProps, Switch, Redirect } from 'react-router-dom';
 import { Alert, PageSection } from '@patternfly/react-core';
 import { DynamicImport } from '@app/DynamicImport';
@@ -7,14 +8,20 @@ import { NotFound } from '@app/NotFound/NotFound';
 import DocumentTitle from 'react-document-title';
 import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
 
-const getCVRFListAsync = () => {
-  return () => import(/* webpackChunkName: 'CVRFList' */ '@app/pages/CVRFList');
+const getCVRFListAsync = async () => {
+  const module = await import(/* webpackChunkName: 'CVRFList' */ '@app/pages/CVRFList');
+  return module.CVRFList;
 };
 
-const AsyncCVRFList = (routeProps: RouteComponentProps) => {
+const getCVRFDetailsAsync = async () => {
+  const module = await import(/* webpackChunkName: 'CVRFDetails' */ '@app/pages/CVRFDetails');
+  return module.CVRFDetails;
+};
+
+const AsyncComponent: React.FunctionComponent<{ getComponent: () => Promise<React.ComponentType> }> = ({ getComponent }) => {
   const lastNavigation = useLastLocation();
   return (
-    <DynamicImport load={getCVRFListAsync()} focusContentAfterMount={lastNavigation !== null}>
+    <DynamicImport load={getComponent} focusContentAfterMount={lastNavigation !== null}>
       {(Component: any) => {
         let loadedComponent: any;
         if (Component === null) {
@@ -26,7 +33,7 @@ const AsyncCVRFList = (routeProps: RouteComponentProps) => {
             </PageSection>
           );
         } else {
-          loadedComponent = <Component.CVRFList {...routeProps} />;
+          loadedComponent = <Component />;
         }
         return loadedComponent;
       }}
@@ -34,16 +41,9 @@ const AsyncCVRFList = (routeProps: RouteComponentProps) => {
   );
 };
 
-const RouteWithTitleUpdates = ({ component: Component, isAsync = false, title, ...rest }) => {
+const RouteWithTitleUpdates = ({ isAsync = false, title, children, ...rest }) => {
+  const location = useLocation();
   const lastNavigation = useLastLocation();
-
-  function routeWithTitle(routeProps: RouteComponentProps) {
-    return (
-      <DocumentTitle title={title}>
-        <Component {...rest} {...routeProps} />
-      </DocumentTitle>
-    );
-  }
 
   React.useEffect(() => {
     let routeFocusTimer;
@@ -57,7 +57,13 @@ const RouteWithTitleUpdates = ({ component: Component, isAsync = false, title, .
     };
   }, []);
 
-  return <Route render={routeWithTitle} />;
+  return (
+    <Route {...rest}>
+      <DocumentTitle title={title} key={location.key}>
+        {children}
+      </DocumentTitle>
+    </Route>
+  );
 };
 
 export interface IAppRoute {
@@ -69,36 +75,31 @@ export interface IAppRoute {
   title: string;
   isAsync?: boolean;
 }
-
-const routes: IAppRoute[] = [
-  {
-    component: AsyncCVRFList,
-    exact: true,
-    icon: null,
-    label: 'CVRF',
-    path: '/cvrf',
-    title: 'CVRF'
-  }
-];
-
 const AppRoutes = () => (
   <LastLocationProvider>
     <Switch>
       <Redirect from='/' to='/cvrf' exact={true} />
-      {routes.map(({ path, exact, component, title, isAsync, icon }, idx) => (
-        <RouteWithTitleUpdates
-          path={path}
-          exact={exact}
-          component={component}
-          key={idx}
-          icon={icon}
-          title={title}
-          isAsync={isAsync}
-        />
-      ))}
-      <RouteWithTitleUpdates component={NotFound} title={'404 Page Not Found'} />
+      <RouteWithTitleUpdates
+        path={'/cvrf'}
+        exact={true}
+        title={'List of CVRF'}
+        isAsync={true}
+      >
+        <AsyncComponent getComponent={getCVRFListAsync} />
+      </RouteWithTitleUpdates>
+      <RouteWithTitleUpdates
+        path={'/cvrf/:RHSA_id'}
+        exact={true}
+        title={'RHSA Details'}
+        isAsync={true}
+      >
+        <AsyncComponent getComponent={getCVRFDetailsAsync} />
+      </RouteWithTitleUpdates>
+      <RouteWithTitleUpdates title={'404 Page Not Found'}>
+        <NotFound />>
+      </RouteWithTitleUpdates>
     </Switch>
   </LastLocationProvider>
 );
 
-export { AppRoutes, routes };
+export { AppRoutes };

@@ -13,13 +13,14 @@ export interface ISeverityProps {
 }
 
 export const Severity: React.FunctionComponent<ISeverityProps> = ({ severity }) => {
+  const severityValue = severity.toLowerCase();
   return (
     <span
       className={css(
         styles.severity,
-        severity === 'low' && styles.low,
-        severity === 'moderate' && styles.moderate,
-        severity === 'important' && styles.important
+        severityValue === 'low' && styles.low,
+        severityValue === 'moderate' && styles.moderate,
+        severityValue === 'important' && styles.important
       )}
     >
       {severity}

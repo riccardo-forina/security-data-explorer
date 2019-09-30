@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: nodejs:10 security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2019:2925</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2019-09-30T07:07:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2019-09-30T07:07:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2019-09-30T07:07:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat rhsa-to-cvrf 2.1</Engine>
+      <Date>2019-09-30T07:22:01Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for the nodejs:10 module is now available for Red Hat Enterprise Linux 8.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+Node.js is a software development platform for building fast and scalable network applications in the JavaScript programming language.
+
+The following packages have been upgraded to a later upstream version: nodejs (10.16.3).
+
+Security Fix(es):
+
+* HTTP/2: large amount of data requests leads to denial of service (CVE-2019-9511)
+
+* HTTP/2: flood using PING frames results in unbounded memory growth (CVE-2019-9512)
+
+* HTTP/2: flood using PRIORITY frames results in excessive resource consumption (CVE-2019-9513)
+
+* HTTP/2: flood using HEADERS frames results in unbounded memory growth (CVE-2019-9514)
+
+* HTTP/2: flood using SETTINGS frames results in unbounded memory growth (CVE-2019-9515)
+
+* HTTP/2: 0-length headers lead to denial of service (CVE-2019-9516)
+
+* HTTP/2: request for large response leads to denial of service (CVE-2019-9517)
+
+* HTTP/2: flood using empty frames results in excessive resource consumption (CVE-2019-9518)
+
+For more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">Please see https://www.redhat.com/footer/terms-of-use.html</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2019 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2019:2925</Description>
+    </Reference>
+    <Reference>
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux">
+      <Branch Type="Product Name" Name="Red Hat Enterprise Linux AppStream (v. 8)">
+        <FullProductName ProductID="AppStream-8.0.0.Z">Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="nodejs-1:10-8000020190911085529.f8e95b4e">
+      <FullProductName ProductID="nodejs-1:10-8000020190911085529.f8e95b4e">nodejs-10.16.3-2.module+el8.0.0+4214+49953fda.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="nodejs-nodemon-0:10-8000020190911085529.f8e95b4e">
+      <FullProductName ProductID="nodejs-nodemon-0:10-8000020190911085529.f8e95b4e">nodejs-nodemon-1.18.3-1.module+el8+2632+6c5111ed.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="nodejs-packaging-0:10-8000020190911085529.f8e95b4e">
+      <FullProductName ProductID="nodejs-packaging-0:10-8000020190911085529.f8e95b4e">nodejs-packaging-17-3.module+el8+2873+aa7dfd9a.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="nodejs-1:10-8000020190911085529.f8e95b4e" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.0.0.Z">
+      <FullProductName ProductID="AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e">nodejs-1:10-8000020190911085529.f8e95b4e as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="nodejs-nodemon-0:10-8000020190911085529.f8e95b4e" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.0.0.Z">
+      <FullProductName ProductID="AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e">nodejs-nodemon-0:10-8000020190911085529.f8e95b4e as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="nodejs-packaging-0:10-8000020190911085529.f8e95b4e" RelationType="Default Component Of" RelatesToProductReference="AppStream-8.0.0.Z">
+      <FullProductName ProductID="AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e">nodejs-packaging-0:10-8000020190911085529.f8e95b4e as a component of Red Hat Enterprise Linux AppStream (v. 8)</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: large amount of data requests leads to denial of service </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9511</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://kb.cert.org/vuls/id/605641/</URL>
+        <Description>https://kb.cert.org/vuls/id/605641/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</URL>
+        <Description>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9511</URL>
+        <Description>CVE-2019-9511</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1741860</URL>
+        <Description>bz#1741860: CVE-2019-9511 HTTP/2: large amount of data requests leads to denial of service</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: flood using PING frames results in unbounded memory growth </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T17:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9512</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/forum/#!topic/golang-announce/65QixT3tcmg</URL>
+        <Description>https://groups.google.com/forum/#!topic/golang-announce/65QixT3tcmg</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://groups.google.com/forum/#!topic/kubernetes-security-announce/wlHLHit1BqA</URL>
+        <Description>https://groups.google.com/forum/#!topic/kubernetes-security-announce/wlHLHit1BqA</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</URL>
+        <Description>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9512</URL>
+        <Description>CVE-2019-9512</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1735645</URL>
+        <Description>bz#1735645: CVE-2019-9512 HTTP/2: flood using PING frames results in unbounded memory growth</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Envoy security team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: flood using PRIORITY frames results in excessive resource consumption </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T17:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9513</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</URL>
+        <Description>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nghttp2.org/blog/2019/08/19/nghttp2-v1-39-2/</URL>
+        <Description>https://nghttp2.org/blog/2019/08/19/nghttp2-v1-39-2/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9513</URL>
+        <Description>CVE-2019-9513</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1735741</URL>
+        <Description>bz#1735741: CVE-2019-9513 HTTP/2: flood using PRIORITY frames results in excessive resource consumption</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Envoy security team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: flood using HEADERS frames results in unbounded memory growth </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T17:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9514</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://groups.google.com/forum/#!topic/golang-announce/65QixT3tcmg</URL>
+        <Description>https://groups.google.com/forum/#!topic/golang-announce/65QixT3tcmg</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://groups.google.com/forum/#!topic/kubernetes-security-announce/wlHLHit1BqA</URL>
+        <Description>https://groups.google.com/forum/#!topic/kubernetes-security-announce/wlHLHit1BqA</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</URL>
+        <Description>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9514</URL>
+        <Description>CVE-2019-9514</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1735744</URL>
+        <Description>bz#1735744: CVE-2019-9514 HTTP/2: flood using HEADERS frames results in unbounded memory growth</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Envoy security team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: flood using SETTINGS frames results in unbounded memory growth </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T17:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9515</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</URL>
+        <Description>https://www.mail-archive.com/grpc-io@googlegroups.com/msg06408.html</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9515</URL>
+        <Description>CVE-2019-9515</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1735745</URL>
+        <Description>bz#1735745: CVE-2019-9515 HTTP/2: flood using SETTINGS frames results in unbounded memory growth</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Envoy security team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: 0-length headers lead to denial of service </Note></Notes>
+    <DiscoveryDate>2019-08-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9516</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://kb.cert.org/vuls/id/605641/</URL>
+        <Description>https://kb.cert.org/vuls/id/605641/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</URL>
+        <Description>https://www.nginx.com/blog/nginx-updates-mitigate-august-2019-http-2-vulnerabilities/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/nghttp2/nghttp2/issues/1382#</URL>
+        <Description>https://github.com/nghttp2/nghttp2/issues/1382#</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9516</URL>
+        <Description>CVE-2019-9516</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1741864</URL>
+        <Description>bz#1741864: CVE-2019-9516 HTTP/2: 0-length headers lead to denial of service</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: request for large response leads to denial of service </Note></Notes>
+    <DiscoveryDate>2019-08-16T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9517</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://kb.cert.org/vuls/id/605641/</URL>
+        <Description>https://kb.cert.org/vuls/id/605641/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9517</URL>
+        <Description>CVE-2019-9517</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1741868</URL>
+        <Description>bz#1741868: CVE-2019-9517 HTTP/2: request for large response leads to denial of service</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="8" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">HTTP/2: flood using empty frames results in excessive resource consumption </Note></Notes>
+    <DiscoveryDate>2019-08-01T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2019-08-13T17:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2019-9518</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>AppStream-8.0.0.Z:nodejs-1:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-nodemon-0:10-8000020190911085529.f8e95b4e</ProductID>
+      <ProductID>AppStream-8.0.0.Z:nodejs-packaging-0:10-8000020190911085529.f8e95b4e</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2019:2925</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</URL>
+        <Description>https://github.com/Netflix/security-bulletins/blob/master/advisories/third-party/2019-002.md</Description>
+      </Reference>
+      <Reference>
+        <URL>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</URL>
+        <Description>https://nodejs.org/en/blog/vulnerability/aug-2019-security-releases/</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2019-9518</URL>
+        <Description>CVE-2019-9518</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1735749</URL>
+        <Description>bz#1735749: CVE-2019-9518 HTTP/2: flood using empty frames results in excessive resource consumption</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank the Envoy security team for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>
+

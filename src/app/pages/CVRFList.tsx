@@ -1,24 +1,25 @@
-import * as React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { AppLayout } from '@app/AppLayout/AppLayout';
+import { Calendar, Severity } from '@app/components';
+import { IfLoaded } from '@app/components/IfLoaded';
+import { useCVRFList } from '@app/hooks';
 import {
-  PageSection,
   DataList,
-  DataListItem,
-  DataListItemRow,
-  DataListItemCells,
   DataListCell,
-  TextContent,
-  Text,
-  TextVariants,
+  DataListItem,
+  DataListItemCells,
+  DataListItemRow,
   List,
   ListItem,
-  Breadcrumb,
-  BreadcrumbItem,
-  Pagination
+  PageSection,
+  Pagination,
+  Text,
+  TextContent,
+  TextVariants,
+  Title
 } from '@patternfly/react-core';
-import { Calendar, Severity } from '@app/components';
-import { useCVRFList } from '@app/hooks';
-import { AppLayout } from '@app/AppLayout/AppLayout';
+import * as React from 'react';
+import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export const CVRFList: React.FunctionComponent = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ export const CVRFList: React.FunctionComponent = () => {
   const searchParams = new URLSearchParams(location.search);
   const page = parseInt(searchParams.get('page') || '', 10) || 1;
   const perPage = parseInt(searchParams.get('per_page') || '', 10) || 10;
-  const { CVRFs, loading, error } = useCVRFList({ page, perPage });
+  const { data: CVRFs, loading, error } = useCVRFList({ page, perPage });
 
   const onSetPage = (_, page: number) => {
     searchParams.set('page', page.toString());
@@ -43,66 +44,77 @@ export const CVRFList: React.FunctionComponent = () => {
   };
 
   return (
-    <AppLayout
-      breadcrumb={
-        <Breadcrumb>
-          <BreadcrumbItem>Section Home</BreadcrumbItem>
-          <BreadcrumbItem to="#">Section Title</BreadcrumbItem>
-          <BreadcrumbItem to="#">Section Title</BreadcrumbItem>
-          <BreadcrumbItem to="#" isActive>
-            Section Landing
-          </BreadcrumbItem>
-        </Breadcrumb>
-      }
-    >
+    <AppLayout>
+      <PageSection variant={"light"}>
+        <TextContent>
+          <Title size={'3xl'}>List of recent Common Vulnerability Reporting Framework (CVRF)</Title>
+        </TextContent>
+      </PageSection>
       <PageSection variant={"light"}>
         <Pagination
-          itemCount={1000}
+          itemCount={page * perPage + perPage}
           page={page}
           perPage={perPage}
           onSetPage={onSetPage}
           onPerPageSelect={onPerPageSelect}
-          variant={"top"}
+          variant={'top'}
         />
-        <DataList aria-label="List of CVRFs">
-          {CVRFs.map((cvrf, idx) => {
-            const itemId = `CVRF-item-${idx}`;
-            return (
-              <DataListItem aria-labelledby={itemId} key={itemId}>
-                <DataListItemRow>
-                  <DataListItemCells
-                    dataListCells={[
-                      <DataListCell key="date" isFilled={false}>
-                        <Calendar date={cvrf.released_on} />
-                      </DataListCell>,
-                      <DataListCell key="details" isFilled={true}>
-                        <TextContent>
-                          <Text component={TextVariants.h2} id={itemId}>
-                            <a>{cvrf.RHSA}</a>
-                          </Text>
-                          Severity: <Severity severity={cvrf.severity} />
-                          <Text component={TextVariants.h3} id={itemId}>
-                            List of related CVEs
-                          </Text>
-                        </TextContent>
-                        <List variant={'inline'}>
-                          {cvrf.CVEs.map((cve, idx) => (
-                            <ListItem key={idx}>
-                              <a>{cve}</a>
-                            </ListItem>
-                          ))}
-                          {cvrf.CVEs.length === 0 && 'None.'}
-                        </List>
-                      </DataListCell>,
-                    ]}
-                  />
-                </DataListItemRow>
-              </DataListItem>
-            );
-          })}
-        </DataList>
-        {loading && 'Loading...'}
-      </PageSection>
+          <IfLoaded loading={loading}>
+            {() => (
+              <DataList aria-label="List of CVRFs">
+                {CVRFs.map(CVRF => {
+                  const itemId = `CVRF-item-${CVRF.RHSA}`;
+                  return (
+                    <DataListItem aria-labelledby={itemId} key={itemId}>
+                      <DataListItemRow>
+                        <DataListItemCells
+                          dataListCells={[
+                            <DataListCell key="date" isFilled={false}>
+                              <Calendar date={CVRF.released_on} />
+                            </DataListCell>,
+                            <DataListCell key="details" isFilled={true}>
+                              <TextContent>
+                                <Text component={TextVariants.h2} id={itemId}>
+                                  <Link to={`/cvrf/${CVRF.RHSA}`}>{CVRF.RHSA}</Link>
+                                </Text>
+
+                                Severity: <Severity severity={CVRF.severity} />
+
+                                <Text component={TextVariants.h3} id={itemId}>
+                                  <strong>{CVRF.released_packages.length}</strong> released packages
+                                </Text>
+
+                                <List variant={'inline'}>
+                                  {CVRF.released_packages.map((rp, idx) => (
+                                    <ListItem key={idx}>
+                                      {rp}
+                                    </ListItem>
+                                  ))}
+                                </List>
+
+                                <Text component={TextVariants.h3} id={itemId}>
+                                  <strong>{CVRF.CVEs.length}</strong> related CVEs
+                                </Text>
+
+                                <List variant={'inline'}>
+                                  {CVRF.CVEs.map((cve, idx) => (
+                                    <ListItem key={idx}>
+                                      <a>{cve}</a>
+                                    </ListItem>
+                                  ))}
+                                </List>
+                              </TextContent>
+                            </DataListCell>,
+                          ]}
+                        />
+                      </DataListItemRow>
+                    </DataListItem>
+                  );
+                })}
+              </DataList>
+            )}
+          </IfLoaded>
+        </PageSection>
     </AppLayout>
   );
 };

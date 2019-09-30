@@ -2,7 +2,7 @@ import * as React from 'react';
 import { accessibleRouteChangeHandler } from '@app/utils/utils';
 
 interface IDynamicImport {
-  load: () => Promise<any>;
+  load: () => Promise<React.ComponentType>;
   children: any;
   focusContentAfterMount: boolean;
 }
@@ -25,7 +25,7 @@ class DynamicImport extends React.Component<IDynamicImport> {
       .then(component => {
         if (component) {
           this.setState({
-            component: component.default ? component.default : component
+            component
           });
         }
       })

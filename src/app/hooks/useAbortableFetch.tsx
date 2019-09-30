@@ -1,9 +1,24 @@
 import * as React from 'react';
 
-export function useAbortableFetch(input: RequestInfo, init?: RequestInit) {
+async function tryJson(response: Response) {
+  try {
+    return await response.json();
+  } catch(e) {
+    // can't recover
+  }
+}
+
+export interface IAbortableFetchProps<T> {
+  init?: RequestInit;
+  initialData?: T;
+  responseToData?: (r: Response) => Promise<T | undefined>
+}
+
+export function useAbortableFetch<T>(input: RequestInfo, { init, initialData, responseToData = tryJson}: IAbortableFetchProps<T> = {}) {
   const [response, setResponse] = React.useState<Response | null>();
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState(false);
+  const [data, setData] = React.useState<T | undefined>(initialData);
   const shouldReload = React.useRef(false);
 
   const refetch = () => {
@@ -18,12 +33,15 @@ export function useAbortableFetch(input: RequestInfo, init?: RequestInit) {
       setLoading(true);
       setResponse(null);
       try {
-        const response = await fetch(input, { ...init || {}, signal });
-        if (!response.ok) {
-          setResponse(response);
+        const r = await fetch(input, { ...init || {}, signal });
+        if (!r.ok) {
+          setResponse(r);
           throw new Error()
         }
-        setResponse(response);
+        setResponse(r);
+        if (responseToData) {
+          setData(await responseToData(r));
+        }
       }
       catch (err) {
         if (err.name === 'AbortError') {
@@ -42,5 +60,5 @@ export function useAbortableFetch(input: RequestInfo, init?: RequestInit) {
       controller.abort();
     };
   }, [input, init, shouldReload, setResponse, setError, setLoading]);
-  return { response, loading, error, refetch };
+  return { response, data: data as T, loading, error, refetch };
 }
